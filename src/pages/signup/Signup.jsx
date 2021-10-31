@@ -2,13 +2,13 @@ import { useState } from 'react'
 import s from './Signup.module.css'
 
 const Signup = () => {
-    const [name, setName] = useState('')
+    const [displayName, setDisplayName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(name, email, password)
+        console.log(displayName, email, password)
     }
 
     return (
@@ -19,8 +19,8 @@ const Signup = () => {
                 <span>name:</span>
                 <input
                     type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    value={displayName}
                 />
             </label>
 
