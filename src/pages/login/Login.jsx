@@ -1,14 +1,17 @@
 import s from './Login.module.css'
 import { useState } from 'react'
+import { useLoginFirebase } from '../../hooks/useLoginFirebase'
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const {login, error, isPending} = useLoginFirebase()
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(email, password)
+        login(email, password)
     }
 
     return (
@@ -31,7 +34,9 @@ const Login = () => {
                     value={password}
                 />
             </label>
-            <button className="btn">Login</button>
+            {!isPending && <button className="btn">Login</button>}
+            {isPending && <button disabled className="btn">loading</button>}
+            {error && <p>{error}</p>}
         </form>
     )
 }
