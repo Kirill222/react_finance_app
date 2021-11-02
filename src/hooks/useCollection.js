@@ -3,16 +3,16 @@ import { projectFirestore } from "../firebase/config"
 
 
 
-const useCollection = (collection) => {
+export const useCollection = (collection) => {
 
     const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
 
     useEffect(()=> {
 
-        let ref = projectFirestore().collection(collection)
+        let ref = projectFirestore.collection(collection)
 
-        const unsubscribe = ref.onSnapshot((snapshot) => {
+        const unsubscribe = ref.onSnapshot(snapshot => {
             let results = []
             snapshot.docs.forEach(doc => {
                 results.push({...doc.data(), id: doc.id})
@@ -23,7 +23,7 @@ const useCollection = (collection) => {
             setError(null)
         }, (error) => {
             console.log(error)
-            setError(error.message)
+            setError('could not fetch the data')
 
         })
 
@@ -31,9 +31,5 @@ const useCollection = (collection) => {
         return () => unsubscribe()
     }, [collection])
 
-    return {documents, error}
-
-  
+    return {documents, error}  
 }
-
-export {useCollection}
