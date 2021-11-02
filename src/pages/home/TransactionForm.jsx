@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {useFirestore} from '../../hooks/useFirestore'
 
-const TransactionForm = ({userId}) => {
+const TransactionForm = ({uid}) => {
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
@@ -10,7 +10,7 @@ const TransactionForm = ({userId}) => {
     const handleSubmit = (e) => {
         e.preventDefault()        
         addDocument({
-            userId,
+            uid,
             name, 
             amount,
         })       

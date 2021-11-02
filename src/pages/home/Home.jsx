@@ -10,7 +10,7 @@ const Home = () => {
     const {user} = useAuthContext()
     const {documents, error} = useCollection(
                                             'transactions',
-                                            ["userId", "==", user.uid],
+                                            ["uid", "==", user.uid],
                                             ["createdAt", "desc"]
                                             )
 
@@ -23,7 +23,7 @@ const Home = () => {
                 {documents &&  <TransactionList transactions={documents}/>}
             </div>
             <div className={s.sidebar}> 
-                <TransactionForm userId={user.uid}/>
+                <TransactionForm uid={user.uid}/>
             </div>
         </div>
     )
