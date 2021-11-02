@@ -21,7 +21,7 @@ const firestoreReducer = (state, action) => {
     }
 }
 
-export const useFireStore = (collection) => {
+export const useFirestore = (collection) => {
 
     const [response, dispatch] = useReducer(firestoreReducer, initialState)
     const [isCancelled, setIsCancelled] = useState(false)
