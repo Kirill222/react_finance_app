@@ -8,7 +8,10 @@ import TransactionList from './TransactionList'
 const Home = () => {
 
     const {user} = useAuthContext()
-    const {documents, error} = useCollection('transactions')
+    const {documents, error} = useCollection(
+                                            'transactions',
+                                            ["userId", "==", user.uid]
+                                            )
 
     console.log(user);
 
